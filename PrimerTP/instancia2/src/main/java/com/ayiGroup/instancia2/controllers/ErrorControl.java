@@ -61,7 +61,7 @@ public class ErrorControl implements ErrorController {
     }
 
     public String getErrorPath() {
-        return "/error.html";
+        return "/error";
     }
 
 }

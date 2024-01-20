@@ -1,6 +1,8 @@
 package com.ayiGroup.instancia2.persistence.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,12 +18,19 @@ public class Proveedor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int codigoProveedor;
+    private Integer codigoProveedor;
+    @NotEmpty(message= "El nombre no puede estar vacío")
     private String nombre;
+    @NotEmpty(message= "El telefono no puede estar vacío")
     private String telefono;
+    @NotEmpty(message= "La dirección no puede estar vacía")
     private String direccion;
+    @NotEmpty(message= "El email debe ser válido")
+    @Email
     private String email;
+    @NotEmpty(message= "La web no puede estar vacía")
     private String web;
-    private int estado;
+    @NotEmpty(message= "Debes elegir un estado para el proveedor")
+    private Integer estado;
 
 }

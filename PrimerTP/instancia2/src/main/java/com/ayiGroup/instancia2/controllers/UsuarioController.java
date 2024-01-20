@@ -2,9 +2,11 @@ package com.ayiGroup.instancia2.controllers;
 
 import com.ayiGroup.instancia2.persistence.entities.Usuario;
 import com.ayiGroup.instancia2.services.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +20,13 @@ public class UsuarioController {
 
     @GetMapping("/agregar")
     public String agregar(Model model){
-        model.addAttribute("proveedor",new Usuario());
+        model.addAttribute("usuario",new Usuario());
         return "usuarioForm";
     }
 
     @GetMapping("/editar/{idUsuario}")
     public String editar(Usuario usuario, Model model){
-        model.addAttribute("proveedor", usuarioService.getOne(usuario));
+        model.addAttribute("usuario", usuarioService.getOne(usuario));
         return "usuarioForm";
     }
 
@@ -35,7 +37,10 @@ public class UsuarioController {
     }
 
     @PostMapping("/guardar")
-    public String save(Usuario usuario){
+    public String save(@Valid Usuario usuario, Errors errors){
+        if(errors.hasErrors()){
+            return "usuarioForm";
+        }
         usuarioService.save(usuario);
         return "redirect:/index";
     }

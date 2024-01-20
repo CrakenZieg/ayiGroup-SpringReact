@@ -5,10 +5,12 @@ import com.ayiGroup.instancia2.persistence.entities.Proveedor;
 import com.ayiGroup.instancia2.persistence.entities.Usuario;
 import com.ayiGroup.instancia2.services.ProveedorService;
 import com.ayiGroup.instancia2.services.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,13 +38,11 @@ public class BaseController {
     }
 
     @PostMapping("/login")
-    public String logedIn(Usuario usuario, Model model){
-        if(authenticationProvider.getAuthentication(usuario)){
-            return "redirect:/index";
-        } else {
-            model.addAttribute("usuario", new Usuario());
+    public String logedIn(@Valid Usuario usuario, Model model, Errors errors){
+        if(errors.hasErrors()||!authenticationProvider.getAuthentication(usuario)){
             return "login";
         }
+        return "redirect:/index";
     }
 
     @GetMapping("/logout")
