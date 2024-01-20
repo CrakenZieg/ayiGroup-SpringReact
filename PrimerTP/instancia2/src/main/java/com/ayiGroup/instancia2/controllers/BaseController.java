@@ -44,13 +44,9 @@ public class BaseController {
     }
 
     @PostMapping("/login")
-    public String logedIn(@Valid Usuario usuario, Model model, Errors errors){
+    public String logedIn(@Valid Usuario usuario, Model model){
         if(!authenticationProvider.getAuthentication(usuario)) {
             model.addAttribute("error", "Credenciales incorrectas");
-            if (errors.hasErrors()) {
-                model.addAttribute("errorNombre", errors.getFieldError("nombre").getDefaultMessage());
-                model.addAttribute("errorPassword", errors.getFieldError("password").getDefaultMessage());
-            }
             return "login";
         }
         return "redirect:index";
