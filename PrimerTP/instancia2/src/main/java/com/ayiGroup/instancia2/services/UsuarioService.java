@@ -8,7 +8,5 @@ public interface UsuarioService {
 
     List<Usuario> getAll();
     Usuario getOne(Usuario usuario);
-    void save(Usuario usuario);
-    void delete(Usuario usuario);
 
 }

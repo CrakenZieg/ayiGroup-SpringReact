@@ -1,7 +1,6 @@
 package com.ayiGroup.instancia2.persistence.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,11 +16,10 @@ public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "numero_identificatorio")
+    @Column(name = "id_usuario")
     private Integer idUsuario;
-    @NotEmpty(message= "El nombre no puede estar vacío")
     private String nombre;
-    @NotEmpty(message= "La contraseña no puede estar en blanco")
+    @Column(name = "password_usuario")
     private String password;
 
 }

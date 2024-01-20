@@ -18,12 +18,22 @@
     <div class="row">
         <div class="col m-auto">
             <div class="card p-5">
+                <h2>Login</h2>
+                <div th:if="${error}" class="alert alert-danger">
+                    <p th:text="${error}"></p>
+                </div>
                 <form class="d-flex flex-column align-items-center" th:action="@{/login}" method="POST" th:object="${usuario}">
                     <div class="mb-3 w-50">
                         <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" placeholder="Nombre" required/>
                     </div>
+                    <div th:if="${errorNombre}" class="alert alert-danger">
+                        <p th:text="${errorNombre}"></p>
+                    </div>
                     <div class="mb-3 w-50">
                         <input type="password" class="form-control" id="password" name="password" th:field="*{password}" placeholder="Password" required/>
+                    </div>
+                    <div th:if="${errorPassword}" class="alert alert-danger">
+                        <p th:text="${errorPassword}"></p>
                     </div>
                     <div class="mb-3 align-self-center">
                         <input type="submit" class="btn btn-info" value="Ingresar"/>

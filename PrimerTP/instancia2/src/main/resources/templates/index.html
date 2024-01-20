@@ -16,9 +16,7 @@
         </div>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a th:href="@{/inicio}" class="px-2 btn btn-outline-secondary">Home</a></li>
-            <li><a href="#usuarios" class="px-2 btn btn-outline-primary">Usuarios</a></li>
-            <li><a href="#usuariosForm" class="px-2 btn btn-outline-success">Agregar usuario</a></li>
+            <li><a th:href="@{/}" class="px-2 btn btn-outline-secondary">Inicio</a></li>
             <li><a href="#proveedores" class="px-2 btn btn-outline-primary">Proveedores</a></li>
             <li><a href="#proveedoresForm" class="px-2 btn btn-outline-success">Agregar proveedor</a></li>
             <li><a th:href="@{/logout}" class="px-2 btn btn-outline-danger">Logout</a></li>
@@ -32,45 +30,8 @@
 </div>
 <main class="container">
     <div class="row py-3">
-        <h1 th:text="${titulo}">titulo</h1>
+        <h1 th:text="${tittle}">titulo</h1>
         <hr/>
-    </div>
-    <div class="row py-3">
-        <div class="col text-align-center">
-            <h2 id="usuarios">Usuarios</h2>
-            <table class="table table-hover w-50" th:if="${usuarios != null and !usuarios.empty}">
-                <thead>
-                <tr class="table-dark">
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="usuario:${usuarios}">
-                    <th scope="row" th:text="${usuario.idUsuario}">#</th>
-                    <td th:text="${usuario.nombre}">#</td>
-                    <td>
-                        <a th:href="@{/usuario/editar/}+${usuario.idUsuario}"
-                           class="btn btn-warning">
-                            <i class="bi bi-pencil-square"></i> Editar
-                        </a>
-                        <a th:href="@{/usuario/eliminar/}+${usuario.idUsuario}"
-                           class="btn btn-danger">
-                            <i class="bi bi-trash"></i> Eliminar
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <h3 th:unless="${usuarios != null and !usuarios.empty}">No se encuentran usuarios</h3>
-            <div id="usuariosForm">
-                <a th:href="@{/usuario/agregar}"
-                   class="btn btn-success">
-                    <i class="bi bi-plus-lg"></i> Agregar
-                </a>
-            </div>
-        </div>
     </div>
     <div class="row py-3">
         <div class="col">
@@ -90,7 +51,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="proveedor:${proveedores}">
-                    <th scope="row" th:text="${proveedor.codigoProveedor}">#</th>
+                    <th scope="row" th:text="${proveedor.idProveedor}">#</th>
                     <td th:text="${proveedor.nombre}">#</td>
                     <td th:text="${proveedor.telefono}">#</td>
                     <td th:text="${proveedor.direccion}">#</td>
@@ -103,11 +64,11 @@
                         <span th:case="*" class="btn btn-light">Sin datos</span>
                     </td>
                     <td>
-                        <a th:href="@{/proveedor/editar/}+${proveedor.codigoProveedor}"
+                        <a th:href="@{/proveedor/edit/}+${proveedor.idProveedor}"
                            class="btn btn-warning">
                             <i class="bi bi-pencil-square"></i>
                         </a>
-                        <a th:href="@{/proveedor/eliminar/}+${proveedor.codigoProveedor}"
+                        <a th:href="@{/proveedor/delete/}+${proveedor.idProveedor}"
                            class="btn btn-danger">
                             <i class="bi bi-trash"></i>
                         </a>
@@ -117,7 +78,7 @@
             </table>
             <h3 th:unless="${proveedores != null and !proveedores.empty}">No se encuentran proveedores</h3>
             <div id="proveedoresForm">
-                <a th:href="@{/proveedor/agregar}"
+                <a th:href="@{/proveedor/add}"
                    class="btn btn-success">
                     <i class="bi bi-plus-lg"></i> Agregar
                 </a>

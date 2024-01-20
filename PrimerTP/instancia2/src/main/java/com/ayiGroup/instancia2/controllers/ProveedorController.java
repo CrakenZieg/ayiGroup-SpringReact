@@ -18,27 +18,34 @@ public class ProveedorController {
     @Autowired
     private ProveedorService proveedorService;
 
-    @GetMapping("/agregar")
+    @GetMapping("/add")
     public String agregar(Model model){
         model.addAttribute("proveedor",new Proveedor());
         return "proveedorForm";
     }
 
-    @GetMapping("/editar/{codigoProveedor}")
+    @GetMapping("/edit/{idProveedor}")
     public String editar(Proveedor proveedor, Model model){
-        model.addAttribute("proveedor", proveedorService.getOne(proveedor));
+        proveedor = proveedorService.getOne(proveedor);
+        model.addAttribute("proveedor", proveedor);
         return "proveedorForm";
     }
 
-    @GetMapping("/eliminar/{codigoProveedor}")
+    @GetMapping("/delete/{idProveedor}")
     public String eliminar(Proveedor proveedor){
+        proveedor = proveedorService.getOne(proveedor);
         proveedorService.delete(proveedorService.getOne(proveedor));
         return "redirect:/index";
     }
 
-    @PostMapping("/guardar")
-    public String save(@Valid Proveedor proveedor, Errors errors){
+    @PostMapping("/save")
+    public String save(@Valid Proveedor proveedor, Errors errors, Model model){
         if(errors.hasErrors()){
+            model.addAttribute("errorNombre", errors.getFieldError("nombre").getDefaultMessage());
+            model.addAttribute("errorTelefono", errors.getFieldError("telefono").getDefaultMessage());
+            model.addAttribute("errorDireccion", errors.getFieldError("direccion").getDefaultMessage());
+            model.addAttribute("errorEmail", errors.getFieldError("email").getDefaultMessage());
+            model.addAttribute("errorWeb", errors.getFieldError("web").getDefaultMessage());
             return "proveedorForm";
         }
         proveedorService.save(proveedor);

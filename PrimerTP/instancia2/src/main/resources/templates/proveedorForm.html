@@ -13,32 +13,47 @@
     <div class="row">
         <div class="col m-auto">
             <div class="card p-5">
-                <form class="d-flex flex-column align-items-center was-validated" th:action="@{/proveedor/guardar}" method="POST" th:object="${proveedor}">
-                    <input th:if="${proveedor.codigoProveedor != null}" type="number" id="codigoProveedor" name="codigoProveedor" th:field="*{codigoProveedor}" hidden/>
+                <form class="d-flex flex-column align-items-center was-validated" th:action="@{/proveedor/save}" method="POST" th:object="${proveedor}">
+                    <input type="hidden" id="idProveedor" name="idProveedor" th:field="*{idProveedor}"/>
                     <div class="mb-3 w-50">
                         <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" placeholder="Nombre" required/>
+                    </div>
+                    <div th:if="${errorNombre}" class="alert alert-danger">
+                        <p th:text="${errorNombre}"></p>
                     </div>
                     <div class="mb-3 w-50">
                         <input type="tel" class="form-control" id="telefono" name="telefono" th:field="*{telefono}" placeholder="Telefono" required/>
                     </div>
+                    <div th:if="${errorTelefono}" class="alert alert-danger">
+                        <p th:text="${errorTelefono}"></p>
+                    </div>
                     <div class="mb-3 w-50">
                         <input type="text" class="form-control" id="direccion" name="direccion" th:field="*{direccion}" placeholder="Direccion" required/>
+                    </div>
+                    <div th:if="${errorDireccion}" class="alert alert-danger">
+                        <p th:text="${errorDireccion}"></p>
                     </div>
                     <div class="mb-3 w-50">
                         <input type="email" class="form-control" id="email" name="email" th:field="*{email}" placeholder="Email" required/>
                     </div>
+                    <div th:if="${errorEmail}" class="alert alert-danger">
+                        <p th:text="${errorEmail}"></p>
+                    </div>
                     <div class="mb-3 w-50">
                         <input type="text" class="form-control" id="web" name="web" th:field="*{web}" placeholder="Web" required/>
                     </div>
+                    <div th:if="${errorWeb}" class="alert alert-danger">
+                        <p th:text="${errorWeb}"></p>
+                    </div>
                     <div class="mb-3 w-50">
                         <select class="form-select" id="estado" name="estado" th:field="*{estado}" placeholder="Estado" required>
-                            <option class="bg-success-subtle text-white" value=1 selected>Activo</option>
-                            <option class="bg-primary-subtle text-white" value=2>Inactivo</option>
-                            <option class="bg-danger-subtle text-white" value=3>Dado de baja</option>
+                            <option class="bg-success text-white" value=1 selected>Activo</option>
+                            <option class="bg-primary text-white" value=2>Inactivo</option>
+                            <option class="bg-danger text-white" value=3>Dado de baja</option>
                         </select>
                     </div>
                     <div class="mb-3 align-self-center">
-                        <input type="submit" class="btn btn-info" value="Ingresar"/>
+                        <input type="submit" class="btn btn-info" value="Guardar"/>
                     </div>
                 </form>
             </div>
