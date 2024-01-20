@@ -1,4 +1,4 @@
-package com.ayiGroup.instancia2.repositories.entities;
+package com.ayiGroup.instancia2.persistence.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

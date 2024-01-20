@@ -1,7 +1,7 @@
 package com.ayiGroup.instancia2.services;
 
-import com.ayiGroup.instancia2.repositories.entities.Usuario;
-import com.ayiGroup.instancia2.repositories.repositories.UsuarioRepository;
+import com.ayiGroup.instancia2.persistence.entities.Usuario;
+import com.ayiGroup.instancia2.persistence.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

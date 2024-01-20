@@ -1,7 +1,7 @@
 package com.ayiGroup.instancia2.services;
 
-import com.ayiGroup.instancia2.repositories.entities.Proveedor;
-import com.ayiGroup.instancia2.repositories.repositories.ProovedorRepository;
+import com.ayiGroup.instancia2.persistence.entities.Proveedor;
+import com.ayiGroup.instancia2.persistence.repositories.ProovedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

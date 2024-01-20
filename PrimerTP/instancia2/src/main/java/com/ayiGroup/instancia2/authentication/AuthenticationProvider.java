@@ -1,6 +1,6 @@
 package com.ayiGroup.instancia2.authentication;
 
-import com.ayiGroup.instancia2.repositories.entities.Usuario;
+import com.ayiGroup.instancia2.persistence.entities.Usuario;
 
 public interface AuthenticationProvider {
 

@@ -1,8 +1,8 @@
 package com.ayiGroup.instancia2.controllers;
 
 import com.ayiGroup.instancia2.authentication.AuthenticationProvider;
-import com.ayiGroup.instancia2.repositories.entities.Proveedor;
-import com.ayiGroup.instancia2.repositories.entities.Usuario;
+import com.ayiGroup.instancia2.persistence.entities.Proveedor;
+import com.ayiGroup.instancia2.persistence.entities.Usuario;
 import com.ayiGroup.instancia2.services.ProveedorService;
 import com.ayiGroup.instancia2.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;

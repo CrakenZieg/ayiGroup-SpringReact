@@ -1,6 +1,6 @@
 package com.ayiGroup.instancia2.services;
 
-import com.ayiGroup.instancia2.repositories.entities.Proveedor;
+import com.ayiGroup.instancia2.persistence.entities.Proveedor;
 
 import java.util.List;
 
