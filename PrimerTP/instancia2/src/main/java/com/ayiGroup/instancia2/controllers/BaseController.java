@@ -29,13 +29,18 @@ public class BaseController {
     private String tittle;
 
     @GetMapping("/")
-    public String login(Model model){
+    public String home(Model model){
         if(authenticationProvider.isAuthenticated()){
             return "redirect:/index";
         } else {
             model.addAttribute("usuario", new Usuario());
             return "login";
         }
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "redirect:/";
     }
 
     @PostMapping("/login")
@@ -59,6 +64,9 @@ public class BaseController {
 
     @GetMapping("/index")
     public String index(Model model){
+        if(!authenticationProvider.isAuthenticated()){
+            return "redirect:/login";
+        }
         List<Proveedor> proveedores = proveedorService.getAll();
         model.addAttribute("tittle", tittle);
         model.addAttribute("proveedores", proveedores);

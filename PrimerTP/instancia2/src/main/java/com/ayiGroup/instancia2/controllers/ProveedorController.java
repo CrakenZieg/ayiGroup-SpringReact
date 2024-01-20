@@ -1,5 +1,6 @@
 package com.ayiGroup.instancia2.controllers;
 
+import com.ayiGroup.instancia2.authentication.AuthenticationProvider;
 import com.ayiGroup.instancia2.persistence.entities.Proveedor;
 import com.ayiGroup.instancia2.services.ProveedorService;
 import jakarta.validation.Valid;
@@ -17,15 +18,23 @@ public class ProveedorController {
 
     @Autowired
     private ProveedorService proveedorService;
+    @Autowired
+    private AuthenticationProvider authenticationProvider;
 
     @GetMapping("/add")
     public String agregar(Model model){
+        if(!authenticationProvider.isAuthenticated()){
+            return "redirect:/login";
+        }
         model.addAttribute("proveedor",new Proveedor());
         return "proveedorForm";
     }
 
     @GetMapping("/edit/{idProveedor}")
     public String editar(Proveedor proveedor, Model model){
+        if(!authenticationProvider.isAuthenticated()){
+            return "redirect:/login";
+        }
         proveedor = proveedorService.getOne(proveedor);
         model.addAttribute("proveedor", proveedor);
         return "proveedorForm";
@@ -33,6 +42,9 @@ public class ProveedorController {
 
     @GetMapping("/delete/{idProveedor}")
     public String eliminar(Proveedor proveedor){
+        if(!authenticationProvider.isAuthenticated()){
+            return "redirect:/login";
+        }
         proveedor = proveedorService.getOne(proveedor);
         proveedorService.delete(proveedorService.getOne(proveedor));
         return "redirect:/index";
@@ -40,6 +52,9 @@ public class ProveedorController {
 
     @PostMapping("/save")
     public String save(@Valid Proveedor proveedor, Errors errors, Model model){
+        if(!authenticationProvider.isAuthenticated()){
+            return "redirect:/login";
+        }
         if(errors.hasErrors()){
             model.addAttribute("errorNombre", errors.getFieldError("nombre").getDefaultMessage());
             model.addAttribute("errorTelefono", errors.getFieldError("telefono").getDefaultMessage());
