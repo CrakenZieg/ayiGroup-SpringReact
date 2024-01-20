@@ -9,13 +9,14 @@ import java.io.Serializable;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name="usuarios")
+@Table(name = "usuarios")
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1l;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "numero_identificatorio")
     private int idUsuario;
     private String nombre;
     private String password;

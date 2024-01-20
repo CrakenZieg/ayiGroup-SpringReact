@@ -10,12 +10,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/")
 public class BaseController {
 
     @Autowired
@@ -32,6 +33,16 @@ public class BaseController {
     public String login(Model model){
         model.addAttribute("usuario", new Usuario());
         return "login";
+    }
+
+    @PostMapping("/login")
+    public String logedIn(Usuario usuario, Model model){
+        if(authenticationProvider.getAuthentication(usuario)){
+            return "redirect:/index";
+        } else {
+            model.addAttribute("usuario", new Usuario());
+            return "login";
+        }
     }
 
     @GetMapping("/index")

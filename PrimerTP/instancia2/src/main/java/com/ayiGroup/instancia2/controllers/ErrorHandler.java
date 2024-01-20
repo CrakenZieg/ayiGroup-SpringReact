@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ErrorHandler implements ErrorController {
 
-    @RequestMapping(value = "/error", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/v1/error", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView renderErrorPage(HttpServletRequest httpRequest) {
 
         ModelAndView errorPage = new ModelAndView("error");
@@ -61,7 +61,7 @@ public class ErrorHandler implements ErrorController {
     }
 
     public String getErrorPath() {
-        return "/error.html";
+        return "v1/error.html";
     }
 
 }
