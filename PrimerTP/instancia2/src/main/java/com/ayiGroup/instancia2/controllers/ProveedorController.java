@@ -5,9 +5,10 @@ import com.ayiGroup.instancia2.services.ProveedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/proveedor")
@@ -23,14 +24,20 @@ public class ProveedorController {
     }
 
     @GetMapping("/editar/{codigoProveedor}")
-    public String editar(@RequestParam int codigoProveedor, Model model){
-        model.addAttribute("proveedor", proveedorService.getOne(codigoProveedor));
+    public String editar(Proveedor proveedor, Model model){
+        model.addAttribute("proveedor", proveedorService.getOne(proveedor));
         return "proveedorForm";
     }
 
     @GetMapping("/eliminar/{codigoProveedor}")
-    public String eliminar(@RequestParam int codigoProveedor){
-        proveedorService.delete(proveedorService.getOne(codigoProveedor));
+    public String eliminar(Proveedor proveedor){
+        proveedorService.delete(proveedorService.getOne(proveedor));
+        return "redirect:/index";
+    }
+
+    @PostMapping("/guardar")
+    public String save(Proveedor proveedor){
+        proveedorService.save(proveedor);
         return "redirect:/index";
     }
 

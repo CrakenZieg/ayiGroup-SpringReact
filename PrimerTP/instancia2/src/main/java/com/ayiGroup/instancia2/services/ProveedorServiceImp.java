@@ -22,19 +22,13 @@ public class ProveedorServiceImp implements ProveedorService{
 
     @Override
     @Transactional(readOnly = true)
-    public Proveedor getOne(int codigoProovedor) {
-        return proovedorRepository.findById(codigoProovedor).orElseGet(()->{return null;});
+    public Proveedor getOne(Proveedor proveedor) {
+        return proovedorRepository.findById(proveedor.getCodigoProveedor()).orElseGet(()->{return null;});
     }
 
     @Override
     @Transactional
     public void save(Proveedor proveedor) {
-        proovedorRepository.save(proveedor);
-    }
-
-    @Override
-    @Transactional
-    public void update(Proveedor proveedor) {
         proovedorRepository.save(proveedor);
     }
 

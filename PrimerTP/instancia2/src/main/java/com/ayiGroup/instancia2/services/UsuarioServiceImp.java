@@ -19,17 +19,12 @@ public class UsuarioServiceImp implements UsuarioService{
     }
 
     @Override
-    public Usuario getOne(int idUsuario) {
-        return usuarioRepository.findById(idUsuario).orElseGet(()->{return null;});
+    public Usuario getOne(Usuario usuario) {
+        return usuarioRepository.findById(usuario.getIdUsuario()).orElseGet(()->{return null;});
     }
 
     @Override
     public void save(Usuario usuario) {
-        usuarioRepository.save(usuario);
-    }
-
-    @Override
-    public void update(Usuario usuario) {
         usuarioRepository.save(usuario);
     }
 

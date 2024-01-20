@@ -7,9 +7,8 @@ import java.util.List;
 public interface ProveedorService {
 
     List<Proveedor> getAll();
-    Proveedor getOne(int codigoProovedor);
+    Proveedor getOne(Proveedor proveedor);
     void save(Proveedor proveedor);
-    void update(Proveedor proveedor);
     void delete(Proveedor proveedor);
 
 }
