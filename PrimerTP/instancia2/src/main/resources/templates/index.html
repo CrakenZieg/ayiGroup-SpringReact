@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,32 +7,127 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-<div class="container">
+<header class="container" id="header">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <div class="col-md-3 mb-2 mb-md-0">
-            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+            <a th:href="@{/}" class="d-inline-flex link-body-emphasis text-decoration-none">
+                <h2><i class="bi bi-truck"></i></h2>
             </a>
         </div>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-            <li><a href="#" class="nav-link px-2">Features</a></li>
-            <li><a href="#" class="nav-link px-2">Pricing</a></li>
-            <li><a href="#" class="nav-link px-2">FAQs</a></li>
-            <li><a href="#" class="nav-link px-2">About</a></li>
+            <li><a th:href="@{/inicio}" class="px-2 btn btn-outline-secondary">Home</a></li>
+            <li><a href="#usuarios" class="px-2 btn btn-outline-primary">Usuarios</a></li>
+            <li><a href="#usuariosForm" class="px-2 btn btn-outline-success">Agregar usuario</a></li>
+            <li><a href="#proveedores" class="px-2 btn btn-outline-primary">Proveedores</a></li>
+            <li><a href="#proveedoresForm" class="px-2 btn btn-outline-success">Agregar proveedor</a></li>
+            <li><a th:href="@{/logout}" class="px-2 btn btn-outline-danger">Logout</a></li>
         </ul>
-
-        <div class="col-md-3 text-end">
-            <button type="button" class="btn btn-outline-primary me-2">Login</button>
-            <button type="button" class="btn btn-primary">Sign-up</button>
-        </div>
     </header>
+</header>
+<div class="fixed-bottom mt-50">
+    <a href="#header" class="px-2 btn btn-outline-secondary">
+        <h3><i class="bi bi-arrow-up"></i></h3>
+    </a>
 </div>
-
 <main class="container">
-
+    <div class="row py-3">
+        <h1 th:text="${titulo}">titulo</h1>
+        <hr/>
+    </div>
+    <div class="row py-3">
+        <div class="col text-align-center">
+            <h2 id="usuarios">Usuarios</h2>
+            <table class="table table-hover w-50" th:if="${usuarios != null and !usuarios.empty}">
+                <thead>
+                <tr class="table-dark">
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="usuario:${usuarios}">
+                    <th scope="row" th:text="${usuario.idUsuario}">#</th>
+                    <td th:text="${usuario.nombre}">#</td>
+                    <td>
+                        <a th:href="@{/usuario/editar/}+${usuario.idUsuario}"
+                           class="btn btn-warning">
+                            <i class="bi bi-pencil-square"></i> Editar
+                        </a>
+                        <a th:href="@{/usuario/eliminar/}+${usuario.idUsuario}"
+                           class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <h3 th:unless="${usuarios != null and !usuarios.empty}">No se encuentran usuarios</h3>
+            <div id="usuariosForm">
+                <a th:href="@{/usuario/agregar}"
+                   class="btn btn-success">
+                    <i class="bi bi-plus-lg"></i> Agregar
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row py-3">
+        <div class="col">
+            <h2 id="proveedores">Proveedores</h2>
+            <table class="table table-hover" th:if="${proveedores != null and !proveedores.empty}">
+                <thead>
+                <tr class="table-dark">
+                    <th scope="col">Código</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Web</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="proveedor:${proveedores}">
+                    <th scope="row" th:text="${proveedor.codigoProveedor}">#</th>
+                    <td th:text="${proveedor.nombre}">#</td>
+                    <td th:text="${proveedor.telefono}">#</td>
+                    <td th:text="${proveedor.direccion}">#</td>
+                    <td th:text="${proveedor.email}">#</td>
+                    <td th:text="${proveedor.web}">#</td>
+                    <td th:switch="${proveedor.estado}">
+                        <span th:case="1" class="btn w-100" style="background-color: var(--bs-success-bg-subtle)">Activo</span>
+                        <span th:case="2" class="btn w-100" style="background-color: var(--bs-info-bg-subtle)">Inactivo</span>
+                        <span th:case="3" class="btn w-100" style="background-color: var(--bs-danger-bg-subtle)">Dado de baja</span>
+                        <span th:case="*" class="btn btn-light">Sin datos</span>
+                    </td>
+                    <td>
+                        <a th:href="@{/proveedor/editar/}+${proveedor.codigoProveedor}"
+                           class="btn btn-warning">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a th:href="@{/proveedor/eliminar/}+${proveedor.codigoProveedor}"
+                           class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <h3 th:unless="${proveedores != null and !proveedores.empty}">No se encuentran proveedores</h3>
+            <div id="proveedoresForm">
+                <a th:href="@{/proveedor/agregar}"
+                   class="btn btn-success">
+                    <i class="bi bi-plus-lg"></i> Agregar
+                </a>
+            </div>
+        </div>
+    </div>
 </main>
+<footer class="py-3 my-4">
+    <p class="text-center text-body-secondary">© 2024 AyiGroup, Inc</p>
+</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

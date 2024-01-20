@@ -45,6 +45,12 @@ public class BaseController {
         }
     }
 
+    @GetMapping("/logout")
+    public String logout(){
+        authenticationProvider.setAuthenticate(false);
+        return "redirect:/";
+    }
+
     @GetMapping("/index")
     public String index(Model model){
         List<Proveedor> proveedores = proveedorService.getAll();

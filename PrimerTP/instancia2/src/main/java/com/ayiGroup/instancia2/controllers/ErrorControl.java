@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ErrorHandler implements ErrorController {
+public class ErrorControl implements ErrorController {
 
-    @RequestMapping(value = "/v1/error", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/error", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView renderErrorPage(HttpServletRequest httpRequest) {
 
         ModelAndView errorPage = new ModelAndView("error");
@@ -18,7 +18,7 @@ public class ErrorHandler implements ErrorController {
         int httpErrorCode = getCodigoError(httpRequest);
         String errorMsg = getMensajeError(httpErrorCode);
         String excepMsg = "Error";
-        Throwable throwable = (Throwable) httpRequest.getAttribute("javax.servlet.error.exception");
+        Throwable throwable = (Throwable) httpRequest.getAttribute("jakarta.servlet.error.exception");
         if (throwable != null && throwable.getMessage() != null) {
             excepMsg = throwable.getMessage();
         }
@@ -30,7 +30,7 @@ public class ErrorHandler implements ErrorController {
     }
 
     private int getCodigoError(HttpServletRequest httpRequest) {
-        return (Integer) httpRequest.getAttribute("javax.servlet.error.status_code");
+        return (Integer) httpRequest.getAttribute("jakarta.servlet.error.status_code");
     }
 
     private String getMensajeError(int codigo) {
@@ -61,7 +61,7 @@ public class ErrorHandler implements ErrorController {
     }
 
     public String getErrorPath() {
-        return "v1/error.html";
+        return "/error.html";
     }
 
 }

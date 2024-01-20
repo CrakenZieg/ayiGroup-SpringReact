@@ -11,7 +11,6 @@ import java.util.List;
 public class AuthenticationProviderImp implements AuthenticationProvider{
 
     private static boolean authenticated = false;
-    private static Usuario usuarioLogeado = null;
     @Autowired
     private UsuarioRepository usuarioRepository;
 
@@ -23,7 +22,6 @@ public class AuthenticationProviderImp implements AuthenticationProvider{
                 if(usuarioElem.getNombre().equals(usuario.getNombre())
                         && usuarioElem.getPassword().equals(usuario.getPassword())){
                     authenticated = true;
-                    usuarioLogeado = usuarioElem;
                 }
             }
         }
@@ -39,10 +37,6 @@ public class AuthenticationProviderImp implements AuthenticationProvider{
     public boolean setAuthenticate(boolean value){
         authenticated = value;
         return authenticated;
-    }
-
-    public Usuario getUsuarioLogeado(){
-        return usuarioLogeado;
     }
 
 }
