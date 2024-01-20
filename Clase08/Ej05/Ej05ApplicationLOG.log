@@ -1,0 +1,15 @@
+15:53:07.417 [restartedMain] INFO  com.ayiGroup.Ej05.Ej05Application - Starting Ej05Application using Java 21.0.2 with PID 7248 (C:\ProgramacionCursos\AyiGroup\Java-Spring-React\Clase08\Ej05\target\classes started by cocoz in C:\ProgramacionCursos\AyiGroup\Java-Spring-React\Clase08\Ej05)
+15:53:07.423 [restartedMain] INFO  com.ayiGroup.Ej05.Ej05Application - No active profile set, falling back to 1 default profile: "default"
+15:53:07.457 [restartedMain] INFO  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+15:53:07.457 [restartedMain] INFO  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+15:53:08.143 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+15:53:08.154 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+15:53:08.156 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+15:53:08.156 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+15:53:08.189 [restartedMain] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+15:53:08.190 [restartedMain] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 731 ms
+15:53:08.427 [restartedMain] INFO  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+15:53:08.438 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+15:53:08.454 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+15:53:08.460 [restartedMain] INFO  com.ayiGroup.Ej05.Ej05Application - Started Ej05Application in 1.282 seconds (process running for 1.925)
+15:53:08.463 [restartedMain] INFO  com.ayiGroup.Ej05.Ej05Application - Iniciando aplicación!

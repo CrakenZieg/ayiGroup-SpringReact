@@ -1,0 +1,3 @@
+mensaje: "Curso, Java Spring y React"
+server:
+  port: 9091
