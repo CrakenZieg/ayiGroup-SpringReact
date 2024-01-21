@@ -1,15 +1,14 @@
 package com.ayiGroup.instancia2.controllers;
 
-import com.ayiGroup.instancia2.authentication.AuthenticationProvider;
+import com.ayiGroup.instancia2.login.authentication.AuthenticationProvider;
 import com.ayiGroup.instancia2.persistence.entities.Proveedor;
-import com.ayiGroup.instancia2.persistence.entities.Usuario;
+import com.ayiGroup.instancia2.login.Usuario;
 import com.ayiGroup.instancia2.services.ProveedorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,6 +1,6 @@
 package com.ayiGroup.instancia2.controllers;
 
-import com.ayiGroup.instancia2.authentication.AuthenticationProvider;
+import com.ayiGroup.instancia2.login.authentication.AuthenticationProvider;
 import com.ayiGroup.instancia2.persistence.entities.Proveedor;
 import com.ayiGroup.instancia2.services.ProveedorService;
 import jakarta.validation.Valid;
