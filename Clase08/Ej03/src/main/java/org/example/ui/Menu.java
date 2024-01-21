@@ -1,8 +1,8 @@
-package org.example.util;
+package org.example.ui;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.entity.Empleado;
+import org.example.persistence.entity.Empleado;
 import org.example.service.EmpleadoService;
 import org.example.service.EmpleadoServiceImpl;
 

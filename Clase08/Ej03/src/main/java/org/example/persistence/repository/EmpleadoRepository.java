@@ -1,6 +1,6 @@
-package org.example.repository;
+package org.example.persistence.repository;
 
-import org.example.entity.Empleado;
+import org.example.persistence.entity.Empleado;
 
 import java.util.List;
 

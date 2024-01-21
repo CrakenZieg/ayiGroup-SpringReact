@@ -1,6 +1,6 @@
-package org.example.repository;
+package org.example.persistence.repository;
 
-import org.example.entity.Sucursal;
+import org.example.persistence.entity.Sucursal;
 
 import java.util.List;
 

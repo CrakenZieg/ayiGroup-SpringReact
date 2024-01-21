@@ -2,9 +2,9 @@ package org.example.service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.entity.Empleado;
-import org.example.repository.EmpleadoRepository;
-import org.example.repository.EmpleadoRepositoryImp;
+import org.example.persistence.entity.Empleado;
+import org.example.persistence.repository.EmpleadoRepository;
+import org.example.persistence.repository.EmpleadoRepositoryImp;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.entity.Empleado;
+import org.example.persistence.entity.Empleado;
 
 import java.util.List;
 
