@@ -1,0 +1,44 @@
+[
+  {
+    "nroCliente": 1,
+    "nombre": "pepen1",
+    "apellido": "pepea1",
+    "telefono": "15498654",
+    "domicilio": "cejgnfe 516"
+  },
+  {
+  "nroCliente": 2,
+  "nombre": "pepen2",
+  "apellido": "pepea2",
+  "telefono": "15498654",
+  "domicilio": "cejgnfe 516"
+  },
+  {
+    "nroCliente": 3,
+    "nombre": "pepen3",
+    "apellido": "pepea3",
+    "telefono": "15498654",
+    "domicilio": "cejgnfe 516"
+  },
+  {
+    "nroCliente": 4,
+    "nombre": "pepen4",
+    "apellido": "pepea4",
+    "telefono": "15498654",
+    "domicilio": "cejgnfe 516"
+  },
+  {
+    "nroCliente": 5,
+    "nombre": "pepen5",
+    "apellido": "pepea5",
+    "telefono": "15498654",
+    "domicilio": "cejgnfe 516"
+  },
+  {
+    "nroCliente": 6,
+    "nombre": "pepen6",
+    "apellido": "pepea6",
+    "telefono": "15498654",
+    "domicilio": "cejgnfe 516"
+  }
+]
