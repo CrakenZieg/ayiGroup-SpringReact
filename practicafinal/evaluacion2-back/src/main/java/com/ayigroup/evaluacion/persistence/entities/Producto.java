@@ -25,29 +25,29 @@ public class Producto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
     private int id;
-    @NotBlank(message = "El nombre no puede estar vacío")
+    @NotBlank(message = "El código ean no puede estar vacío")
     @Column(name = "codigo_ean")
     private String ean;
-    @NotBlank(message = "El apellido no puede estar vacío")
+    @NotBlank(message = "El nombre no puede estar vacío")
     @Column(name = "nombre_producto")
     private String nombre;
-    @NotBlank(message = "El cargo no puede estar vacío")
+    @NotBlank(message = "La descripción no puede estar vacío")
     @Column(name = "descripcion_producto")
     private String descripcion;
-    @NotBlank(message = "La sucursal no puede estar vacío")
+    @NotBlank(message = "El tipo no puede estar vacío")
     private String tipo;
-    @NotBlank(message = "La sucursal no puede estar vacío")
+    @NotBlank(message = "La marca no puede estar vacío")
     private String marca;
-    @Min(value = 0, message = "La antigüedad no puede ser menor a cero")
-    private Double precio;
-    @Min(value = 0, message = "La antigüedad no puede ser menor a cero")
-    @Max(value = 1000, message = "La antigüedad no puede ser mayor a 1000")
-    @Column(name = "precio")
-    private Double stock;
+    @Min(value = 0, message = "El precio no puede ser menor o igual a cero")
+    @Max(value = 1000, message = "El precio no puede ser mayor o igual a 1000")
+    private double precio;
+    @Min(value = 0, message = "El stock no puede ser menor a cero")
+    private int stock;
 
     @PrePersist
+    @PreUpdate
     private void normalizeBranch(){
-        this.sucursal = this.sucursal.toUpperCase();
+        this.precio = (Math.floor(this.precio*100))/100;
     }
 
 }

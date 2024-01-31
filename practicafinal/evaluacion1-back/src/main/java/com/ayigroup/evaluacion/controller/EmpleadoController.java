@@ -19,8 +19,7 @@ public class EmpleadoController {
 
     @GetMapping("")
     public ResponseEntity<List<EmpleadoDTO>> all(){
-        List<EmpleadoDTO> empleados = new ArrayList<>();
-        empleados.addAll(empleadoService.getAllDTO());
+        List<EmpleadoDTO> empleados = empleadoService.getAllDTO();
         return ResponseEntity.ok(empleados);
     }
 

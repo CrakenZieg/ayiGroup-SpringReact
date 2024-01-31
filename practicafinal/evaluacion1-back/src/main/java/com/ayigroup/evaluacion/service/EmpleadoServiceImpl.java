@@ -3,9 +3,10 @@ package com.ayigroup.evaluacion.service;
 import com.ayigroup.evaluacion.persistence.dto.EmpleadoCreateRequest;
 import com.ayigroup.evaluacion.persistence.dto.EmpleadoDTO;
 import com.ayigroup.evaluacion.persistence.entities.Empleado;
-import com.ayigroup.evaluacion.persistence.repositories.EmpleadoRepositorio;
+import com.ayigroup.evaluacion.persistence.repositories.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,63 +15,73 @@ import java.util.List;
 public class EmpleadoServiceImpl implements EmpleadoService{
 
     @Autowired
-    private EmpleadoRepositorio empleadoRepositorio;
+    private EmpleadoRepository empleadoRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Empleado> getAll() {
-        return empleadoRepositorio.findAll();
+        return empleadoRepository.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Empleado getOne(int id) {
-        return empleadoRepositorio.findById(id).orElse(null);
+        return empleadoRepository.findById(id).orElse(null);
     }
 
     @Override
+    @Transactional
     public void create(EmpleadoCreateRequest dto) {
-        empleadoRepositorio.save(createDtoToEmpleado(dto));
+        empleadoRepository.save(createDtoToEmpleado(dto));
     }
 
     @Override
+    @Transactional
     public void update(EmpleadoDTO dto) {
-        empleadoRepositorio.save(dtoToEmpleado(dto));
+        empleadoRepository.save(dtoToEmpleado(dto));
     }
 
     @Override
+    @Transactional
     public void delete(int id) {
-        Empleado empleado = empleadoRepositorio.findById(id).orElse(null);
+        Empleado empleado = empleadoRepository.findById(id).orElse(null);
         if(empleado != null){
-            empleadoRepositorio.delete(empleado);
+            empleadoRepository.delete(empleado);
         }
     }
 
     @Override
     public List<EmpleadoDTO> getAllDTO(){
-        List<EmpleadoDTO> empleados = new ArrayList<>();
-        empleados.addAll(getAll().stream().map(
-                (empleado) -> {
-                    return new EmpleadoDTO(
-                            empleado.getId(),
-                            empleado.getNombre(),
-                            empleado.getApellido(),
-                            empleado.getCargo(),
-                            empleado.getSucursal(),
-                            empleado.getAntiguedad());
+        List<Empleado> empleados = getAll();
+        if(!empleados.isEmpty()) {
+            return empleados.stream().map(
+                    (empleado) -> {
+                        return new EmpleadoDTO(
+                                empleado.getId(),
+                                empleado.getNombre(),
+                                empleado.getApellido(),
+                                empleado.getCargo(),
+                                empleado.getSucursal(),
+                                empleado.getAntiguedad());
 
-                }).toList());
-        return empleados;
+                    }).toList();
+        }
+        return new ArrayList<EmpleadoDTO>();
     }
 
     @Override
     public EmpleadoDTO getOneDTO(int id) {
         Empleado empleado = getOne(id);
-        return new EmpleadoDTO(
-                empleado.getId(),
-                empleado.getNombre(),
-                empleado.getApellido(),
-                empleado.getCargo(),
-                empleado.getSucursal(),
-                empleado.getAntiguedad());
+        if(empleado!=null){
+            return new EmpleadoDTO(
+                    empleado.getId(),
+                    empleado.getNombre(),
+                    empleado.getApellido(),
+                    empleado.getCargo(),
+                    empleado.getSucursal(),
+                    empleado.getAntiguedad());
+        }
+        return null;
     }
 
     private Empleado dtoToEmpleado(EmpleadoDTO dto){
