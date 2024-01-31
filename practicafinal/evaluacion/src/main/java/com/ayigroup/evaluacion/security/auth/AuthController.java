@@ -2,7 +2,6 @@ package com.ayigroup.evaluacion.security.auth;
 
 import com.ayigroup.evaluacion.security.dto.AuthResponse;
 import com.ayigroup.evaluacion.security.dto.LoginRequest;
-import com.ayigroup.evaluacion.security.dto.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,11 +19,6 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request){
         return ResponseEntity.ok(authService.login(request));
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request){
-        return ResponseEntity.ok(authService.register(request));
     }
 
 }

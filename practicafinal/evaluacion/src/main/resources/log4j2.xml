@@ -12,8 +12,8 @@
         <Root level="INFO">
             <AppenderRef ref="Console"/>
         </Root>
-        <Root level="WARN">
+        <Logger level="WARN" name="com.ayigroup.evaluacion">
             <AppenderRef ref="File"/>
-        </Root>
+        </Logger>
     </Loggers>
 </Configuration>

@@ -9,30 +9,34 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name="user")
+@Table(name="usuarios")
 public class User implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 1l;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "user_id")
+    @Column(name = "id_usuario")
     private Integer userId;
     @NotBlank(message = "Username is required")
+    @Column(name = "nombre_usuario")
     private String username;
     @NotBlank(message = "Password is required")
-    @Column(name = "user_password")
+    @Column(name = "password_usuario")
     private String password;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("USER"));
+        List<SimpleGrantedAuthority> roles = new ArrayList<>();
+        roles.add(new SimpleGrantedAuthority("USER"));
+        return roles;
     }
 
     @Override
