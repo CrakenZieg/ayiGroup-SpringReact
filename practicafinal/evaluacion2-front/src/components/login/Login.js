@@ -1,9 +1,28 @@
 import React from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import ApiService from '../../service/ApiService';
+import { redirect } from 'react-router-dom';
+
 
 export default function Login() {
 
     const { user, loginUser, logoutUser } = useAuth();
+
+    function login(e){
+        e.preventDefault();
+        let response = ApiService.login({
+            username: e.target.username.value,
+            password: e.target.password.value,
+        })
+        if(response.substring(0) === "E") {
+            redirect("/error", {state:{message:response}});
+        } else {
+            loginUser();
+            redirect("/index");
+        }
+    }
 
   return (    
         user!==""?
@@ -15,7 +34,20 @@ export default function Login() {
         </>
         :
         <>
-            
+            <Form onSubmit={e=>{login(e)}}>
+                <Form.Group className="mb-3" controlId="username">
+                    <Form.Label>Usuario</Form.Label>
+                    <Form.Control type="text" name="username" placeholder="Usuario" />                    
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="password">
+                    <Form.Label>Contraseña</Form.Label>
+                    <Form.Control type="password" name="password" placeholder="Contraseña" />
+                </Form.Group>
+                <Button  variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
         </>
     
   )

@@ -4,7 +4,7 @@ import { URLS } from '../constants/Constants';
 export default ApiService = {
 
     login : (credentials) => {
-        axios.post(
+        return axios.post(
             URLS.LOGIN(),
             {
                 username:credentials.username,
@@ -15,10 +15,14 @@ export default ApiService = {
                 }
             }
         ).then(
-            response => {
+            (response) => {
                 localStorage.setItem("token", response.data.token);
                 localStorage.setItem("user", credentials.username);
-                return;
+                return `Bienvenido ${credentials.username}!`;
+            }
+        ).catch(
+            (error) => {
+                return `Error: ${error}`;
             }
         )
     }
