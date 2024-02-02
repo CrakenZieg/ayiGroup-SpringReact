@@ -12,8 +12,8 @@ export default function Router() {
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/index" element={<Main />} />
-                <Route path="/cliente" element={<FormCliente />} />
-                <Route path="/producto" element={<FormProducto />} />
+                <Route path="/formulario_cliente" element={<FormCliente />} />
+                <Route path="/formulario_producto" element={<FormProducto />} />
                 <Route path="/error" element={<Error />} />
                 <Route path="*" element={<Error message={"Error: ruta desconocida"}/>} />
             </Routes>
