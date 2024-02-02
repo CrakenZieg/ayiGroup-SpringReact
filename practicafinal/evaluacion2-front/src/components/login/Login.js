@@ -5,7 +5,18 @@ export default function Login() {
 
     const { user, loginUser, logoutUser } = useAuth();
 
-  return (
-    <div>Login</div>
+  return (    
+        user!==""?
+        <>
+            <h3>Ya estás autenticado como: {user}</h3>
+            <p>¿No sos vos? <a>Haz click aquí para cerrar sesión.</a></p>
+            <Link onclick={logoutUser} to={"/"}>Link externo a la receta</Link>
+            <Link to={"/index"}>Volver</Link>
+        </>
+        :
+        <>
+            
+        </>
+    
   )
 }
