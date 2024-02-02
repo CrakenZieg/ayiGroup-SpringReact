@@ -1,5 +1,8 @@
 import './App.css';
 import { AuthProvider } from './contexts/AuthContext';
+import Header from './components/header/Header';
+import Router from './components/router/Router';
+import Footer from './components/footer/Footer';
 
 function App() {
   return (
