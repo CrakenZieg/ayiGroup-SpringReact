@@ -1,10 +1,10 @@
 import { axios } from 'axios';
 import { URLS } from '../constants/Constants';
 
-export default ApiService = {
+export const ApiService = {
 
     login : (credentials) => {
-        axios.post(
+        return axios.post(
             URLS.LOGIN(),
             {
                 username:credentials.username,
@@ -13,12 +13,6 @@ export default ApiService = {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }
-        ).then(
-            response => {
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("user", credentials.username);
-                return;
             }
         )
     }

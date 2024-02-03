@@ -2,16 +2,20 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { NavLink, redirect } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
+import { BoxArrowRight } from 'react-bootstrap-icons';
 
 export default function Header() {
 
-    const { user, loginUser, logoutUser } = useAuth();
+    const { user, logoutUser } = useAuth();
+    
+    let navigate = useNavigate();
 
     function logout(e){
         e.preventDefault();
         logoutUser();
-        redirect("/");
+        navigate("/");
     }
 
   return (
@@ -30,11 +34,12 @@ export default function Header() {
                     <Nav.Link as={NavLink} to="/formulario_empleado" className={({isActive})=>isActive ? "":"text-white"}>
                         Formulario de empleados
                     </Nav.Link>
-                    <Nav.Link as={NavLink} onclick={e=>logout(e)} className={text-danger}>
-                        <i class="bi bi-box-arrow-right"></i> Logout
+                    <Nav.Link onClick={e=>logout(e)} className={"text-danger"}>
+                        Logout <BoxArrowRight/>
                     </Nav.Link>
                 </Nav>
-                }
+                }                
+                <hr/>
             </Container>
         </Navbar>
     </>

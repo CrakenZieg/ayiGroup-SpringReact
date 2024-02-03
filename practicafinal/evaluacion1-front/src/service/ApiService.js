@@ -1,30 +1,78 @@
-import { axios } from 'axios';
+import axios from 'axios';
 import { URLS } from '../constants/Constants';
 
-export default ApiService = {
+export const ApiService = {
 
-    login : (credentials) => {
+    login: (credentials) => {
         return axios.post(
             URLS.LOGIN(),
             {
-                username:credentials.username,
-                password:credentials.password
-            },{
+                username: credentials.username,
+                password: credentials.password
+            }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        )
+    },
+
+    all: (token) => {
+        return axios.get(
+            URLS.EMPLEADOS(),
+            {
                 headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }
+        )
+    },
+
+    one: (id, token) => {
+        return axios.get(
+            URLS.EMPLEADOS_ID(id),
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }
+        )
+    },
+
+    create: (empleado, token) => {
+        return axios.post(
+            URLS.EMPLEADOS(),
+            empleado,
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 }
             }
-        ).then(
-            (response) => {
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("user", credentials.username);
-                return `Bienvenido ${credentials.username}!`;
+        )
+    },
+
+    update: (empleado, token) => {
+        return axios.put(
+            URLS.EMPLEADOS(),
+            empleado,
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
             }
-        ).catch(
-            (error) => {
-                return `Error: ${error}`;
+        )
+    },
+
+    delete: (id, token) => {
+        return axios.delete(
+            URLS.EMPLEADOS_ID(id),
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             }
         )
     }
-
 }
