@@ -1,43 +1,64 @@
-import React from 'react';
-import { Empleado } from './../../service/EmpleadoModel';
+import React, { useEffect, useState } from 'react';
 import { ApiService } from '../../service/ApiService';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Container, Form, Row } from 'react-bootstrap';
 
 export default function FormEmpleado() {
 
-    const[empleado, setEmpleado] = useState(new Empleado());
+    const [empleado, setEmpleado] = useState({});
 
     const navigate = useNavigate()
 
     const { id } = useParams();
 
-    if(id != null){
-        ApiService.one(id)
-        .then((response)=>{
-            setEmpleado(response);
-        }).catch((error)=>{
-            console.log("Error: "+error);
-            navigate("/index");
-        })
-    }
-
-    function submit(){
+    useEffect(() => {
         if(id != null){
-            ApiService.update(id)
+            ApiService.one(id,localStorage.getItem("token"))
             .then((response)=>{
-                setEmpleado(response);
+                setEmpleado(response.data);
             }).catch((error)=>{
                 console.log("Error: "+error);
                 navigate("/index");
             })
         } else {
-            ApiService.create()
-            .then((response)=>{
-                setEmpleado(response);
+            setEmpleado({
+                nombre: "",
+                apellido:"",
+                cargo:"",
+                sucursal:"",
+                antiguedad:0
+            })
+        }        
+    },[])
+
+    function submit(e){
+        e.preventDefault(); 
+        setEmpleado({        
+            nombre: e.target.nombre.value,
+            apellido: e.target.apellido.value,
+            cargo: e.target.cargo.value,
+            sucursal: e.target.sucursal.value,
+            antiguedad: e.target.antiguedad.value                
+        })       
+        if(id != null){
+            setEmpleado({      
+                    id: id,          
+                    ...empleado
+            })
+            ApiService.update(empleado,localStorage.getItem("token"))
+            .then(()=>{
+                navigate("/index");
             }).catch((error)=>{
                 console.log("Error: "+error);
+                navigate("/error");
+            })
+        } else {            
+            ApiService.create(empleado,localStorage.getItem("token"))
+            .then(()=>{
                 navigate("/index");
+            }).catch((error)=>{
+                console.log("Error: "+error);
+                navigate("/error");
             })
         }
     }
@@ -46,11 +67,11 @@ export default function FormEmpleado() {
     <Container>
         <Row>
             {id?<h2>Modificar empleado</h2>:<h2>Agregar empleado</h2>}
-            <Form>
+            <Form onSubmit={e => { submit(e) }}>
             {id &&  
                 <Form.Group className="mb-3" controlId="id">
                     <Form.Label>Legajo</Form.Label>
-                    <Form.Control type="number" value={empleado.id} name="id" disabled readOnly/>
+                    <Form.Control type="number" value={id} name="id" disabled readOnly/>
                 </Form.Group>
             }
             <Form.Group className="mb-3" controlId="nombre">
@@ -73,7 +94,9 @@ export default function FormEmpleado() {
                 <Form.Label>Legajo</Form.Label>
                 <Form.Control type="number" value={empleado.antiguedad} name="antiguedad" min={0}/>
             </Form.Group>
-            <Button></Button>
+            <Button variant="success" type="submit">
+                Enviar
+            </Button>
             </Form>
         </Row>
     </Container>

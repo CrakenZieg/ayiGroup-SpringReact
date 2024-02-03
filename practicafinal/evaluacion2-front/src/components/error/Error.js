@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowLeft } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import Container from 'react-bootstrap/Container';
 
 export default function Error() {
 

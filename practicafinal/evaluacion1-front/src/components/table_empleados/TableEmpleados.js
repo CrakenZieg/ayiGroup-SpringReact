@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 import { ApiService } from '../../service/ApiService';
@@ -7,14 +7,16 @@ import { Button } from 'react-bootstrap';
 import { PencilSquare, Trash } from 'react-bootstrap-icons';
 
 
-export default function Table(titulo) {
+export default function TableEmpleados({titulo}) {
 
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
+    
     let navigate = useNavigate();
 
     useEffect(() => {
-        ApiService.all()
+        ApiService.all(localStorage.getItem("token"))
             .then((response) => {
+                console.log(response.data);
                 setData(response.data);
             }).catch((error) => {
                 console.log("Error: " + error);
@@ -23,7 +25,7 @@ export default function Table(titulo) {
     }, [])
 
     function eliminar(id) {
-        ApiService.delete(id)
+        ApiService.delete(id,localStorage.getItem("token"))
             .then(() => {
                 navigate("/");
             }).catch((error) => {
@@ -33,7 +35,7 @@ export default function Table(titulo) {
     }
 
     const dataEntries = data.map((empleado) => {
-        <tr key={empleado.id}>
+        return (<tr key={empleado.id}>
             <td>{empleado.id}</td>
             <td>{empleado.apellido}, {empleado.nombre}</td>
             <td>{empleado.cargo}</td>
@@ -45,7 +47,7 @@ export default function Table(titulo) {
             <td>
                 <Button variant="danger" onClick={() => { eliminar(empleado.id); }} ><Trash /></Button>
             </td>
-        </tr>
+        </tr>)
     });
 
     return (
@@ -54,7 +56,7 @@ export default function Table(titulo) {
                 <h2>{titulo}</h2>
                 <hr />
             </Row>
-            {data.length == 0 ?
+            {data.length !== 0 ?
                 <Row>
                     <Table striped bordered hover>
                         <thead>

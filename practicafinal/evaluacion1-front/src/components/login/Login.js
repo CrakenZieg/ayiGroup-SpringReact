@@ -31,6 +31,7 @@ export default function Login() {
     return (
         !user ?
             <Container>
+                <h2>Login</h2>
                 <Form onSubmit={e => { login(e) }}>
                     <Form.Group className="mb-3" controlId="username">
                         <Form.Label>Usuario</Form.Label>
@@ -41,7 +42,7 @@ export default function Login() {
                         <Form.Control type="password" name="password" placeholder="Contraseña" />
                     </Form.Group>
                     <Button variant="primary" type="submit">
-                        Submit
+                        Enviar
                     </Button>
                 </Form>
             </Container>
