@@ -1,4 +1,4 @@
-import { axios } from 'axios';
+import axios from 'axios';
 import { URLS } from '../constants/Constants';
 
 export const ApiLoginService = {

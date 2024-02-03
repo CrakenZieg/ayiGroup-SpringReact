@@ -25,8 +25,7 @@ public class Producto implements Serializable {
     @Column(name = "id_producto")
     private int id;
     @NotBlank(message = "El código ean no puede estar vacío")
-    @Column(name = "codigo_ean", unique = true)
-    @EAN
+    @Column(name = "codigo_ean")
     private String ean;
     @NotBlank(message = "El nombre no puede estar vacío")
     @Column(name = "nombre_producto")

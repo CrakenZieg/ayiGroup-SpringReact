@@ -19,7 +19,7 @@ export default function Login() {
     function login(e) {
         e.preventDefault();
         let username = e.target.username.value;
-        ApiService.login({
+        ApiLoginService.login({
             username: username,
             password: e.target.password.value,
         }).then((response) => {

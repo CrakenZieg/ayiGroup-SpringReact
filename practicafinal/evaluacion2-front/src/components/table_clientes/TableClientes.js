@@ -6,7 +6,7 @@ import { Plus, PencilSquare, Trash } from 'react-bootstrap-icons';
 import { ApiClientesService } from '../../service/ApiClientesService';
 import { useNavigate, Link } from 'react-router-dom';
 
-export default function TableClientes() {
+export default function TableClientes({titulo}) {
 
     const [data, setData] = useState([]);
 
@@ -78,7 +78,7 @@ export default function TableClientes() {
                     <h3>Sin datos que mostrar</h3>
                 </Row>
             }
-            <Row className="mt-5">
+            <Row className="mb-3">
                 <Link to="/formulario_producto"><Button variant="success"><Plus/> Agregar producto</Button></Link>
             </Row>
         </>

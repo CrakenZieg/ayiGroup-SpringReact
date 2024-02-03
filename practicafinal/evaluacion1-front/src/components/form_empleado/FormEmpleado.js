@@ -79,19 +79,19 @@ export default function FormEmpleado() {
             }
             <Form.Group className="mb-3" controlId="nombre">
                 <Form.Label>Nombre</Form.Label>
-                <Form.Control type="text" value={empleado.nombre} name="nombre" placeholder="Carlos" onChange={(e)=>formChange(e)} required/>
+                <Form.Control type="text" value={empleado.nombre} name="nombre" placeholder="Carlos" onChange={(e)=>formChange(e)} maxLength={25} required/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="apellido">
                 <Form.Label>Apellido</Form.Label>
-                <Form.Control type="text" value={empleado.apellido} name="apellido" placeholder="Perez" onChange={(e)=>formChange(e)} required/>
+                <Form.Control type="text" value={empleado.apellido} name="apellido" placeholder="Perez" onChange={(e)=>formChange(e)} maxLength={25} required/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="cargo">
                 <Form.Label>Cargo</Form.Label>
-                <Form.Control type="text" value={empleado.cargo} name="cargo" placeholder="Ej: Vendedor" onChange={(e)=>formChange(e)} required/>
+                <Form.Control type="text" value={empleado.cargo} name="cargo" placeholder="Ej: Vendedor" onChange={(e)=>formChange(e)} maxLength={15} required/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="sucursal">
                 <Form.Label>Sucursal</Form.Label>
-                <Form.Control type="text" value={empleado.sucursal} name="sucursal" placeholder="Ej: AVELLANEDA" onChange={(e)=>formChange(e)} required/>
+                <Form.Control type="text" value={empleado.sucursal} name="sucursal" placeholder="Ej: AVELLANEDA" onChange={(e)=>formChange(e)} maxLength={20} required/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="antiguedad">
                 <Form.Label>Antigüedad</Form.Label>

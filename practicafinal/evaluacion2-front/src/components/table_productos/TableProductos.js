@@ -6,7 +6,7 @@ import { Plus, PencilSquare, Trash } from 'react-bootstrap-icons';
 import { ApiProductosService } from '../../service/ApiProductosService';
 import { useNavigate, Link } from 'react-router-dom';
 
-export default function TableProductos() {
+export default function TableProductos({titulo}) {
 
     const [data, setData] = useState([]);
 
@@ -43,10 +43,10 @@ export default function TableProductos() {
             <td>{producto.precio}</td>
             <td>{producto.stock}</td>
             <td>
-                <Button variant="warning" onClick={() => { navigate(`/formulario_empleado/${empleado.id}`) }} ><PencilSquare /></Button>
+                <Button variant="warning" onClick={() => { navigate(`/formulario_producto/${producto.id}`) }} ><PencilSquare /></Button>
             </td>
             <td>
-                <Button variant="danger" onClick={() => { eliminar(empleado.id); }} ><Trash /></Button>
+                <Button variant="danger" onClick={() => { eliminar(producto.id); }} ><Trash /></Button>
             </td>
         </tr>)
     });
@@ -84,7 +84,7 @@ export default function TableProductos() {
                     <h3>Sin datos que mostrar</h3>
                 </Row>
             }
-            <Row className="mt-5">
+            <Row className="mb-3">
                 <Link to="/formulario_producto"><Button variant="success"><Plus/> Agregar producto</Button></Link>
             </Row>
         </>

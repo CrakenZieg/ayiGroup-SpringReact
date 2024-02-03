@@ -5,8 +5,8 @@ import Main from '../components/main/Main';
 import FormCliente from '../components/form_cliente/FormCliente';
 import FormProducto from '../components/form_producto/FormProducto';
 import Error from '../components/error/Error';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
+import Header from '../components/header/Header';
+import Footer from '../components/footer/Footer';
 
 export default function Router() {
   return (

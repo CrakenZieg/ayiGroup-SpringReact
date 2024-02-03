@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 import { BoxArrowRight } from 'react-bootstrap-icons';
 
 export default function Header() {
@@ -45,7 +46,7 @@ export default function Header() {
                     <Nav.Link as={NavLink} to="/formulario_producto" className={({isActive})=>isActive ? "":"text-white"}>
                         Formulario de productos
                     </Nav.Link>
-                    <Nav.Link as={NavLink} onclick={e=>logout(e)} className={"text-danger"}>
+                    <Nav.Link as={NavLink} onClick={e=>logout(e)} className={"text-danger"}>
                         Logout <BoxArrowRight/>
                     </Nav.Link>
                 </Nav>
