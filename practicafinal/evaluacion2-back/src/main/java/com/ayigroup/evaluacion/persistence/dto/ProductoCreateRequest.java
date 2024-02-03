@@ -8,4 +8,5 @@ public record ProductoCreateRequest(
         String marca,
         double precio,
         int stock
-) {}
+) {
+}

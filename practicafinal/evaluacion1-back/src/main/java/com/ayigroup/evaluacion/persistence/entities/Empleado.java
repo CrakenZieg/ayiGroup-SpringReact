@@ -15,7 +15,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="empleados")
+@Table(name = "empleados")
 public class Empleado implements Serializable {
 
     private static final long serialVersionUID = 1l;
@@ -39,10 +39,9 @@ public class Empleado implements Serializable {
     private int antiguedad;
 
     @PrePersist
-    private void normalizeBranch(){
-        this.sucursal = this.sucursal.replace(" ","").toUpperCase();
+    @PreUpdate
+    private void normalizeBranch() {
+        this.sucursal = this.sucursal.replace(" ", "").toUpperCase();
     }
-
-
 
 }

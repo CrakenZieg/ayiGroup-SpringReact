@@ -30,7 +30,7 @@ export default function Header() {
                         </Navbar.Brand>
                         {
                             user !== "" &&
-                            <Nav className="w-auto d-flex align-items-end">                                
+                            <Nav className="w-auto d-flex align-items-end">
                                 <Nav.Link as={NavLink} to="/index" className={({ isActive }) => isActive ? "" : "text-white"}>
                                     Inicio
                                 </Nav.Link>
@@ -40,10 +40,10 @@ export default function Header() {
                                 <Nav.Link as={NavLink} to="/formulario_empleado" className={({ isActive }) => isActive ? "" : "text-white"}>
                                     Formulario de empleados
                                 </Nav.Link>
-                                <Nav.Link onClick={e => logout(e)} className={"text-danger"}>
-                                    Logout <BoxArrowRight />
+                                <Nav.Link onClick={e => logout(e)} className={"text-danger"} id='user'>
+                                    {user} <BoxArrowRight />
                                 </Nav.Link>
-                            </Nav>                                
+                            </Nav>
                         }
                     </Row>
                 </Container>

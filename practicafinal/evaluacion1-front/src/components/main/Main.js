@@ -8,13 +8,13 @@ import TableEmpleados from '../table_empleados/TableEmpleados';
 
 export default function Main() {
 
-  return (
-    <Container className="mt-3">
-            <TableEmpleados titulo={"Empleados"} className="mb-5"/>
-        <hr/>
-        <Row>
-            <Link to="/formulario_empleado"><Button variant="success"><Plus/> Agregar</Button></Link>
-        </Row>
-    </Container>
-  )
+    return (
+        <Container className="mt-3">
+            <TableEmpleados titulo={"Empleados"} className="mb-5" />
+            <hr />
+            <Row>
+                <Link to="/formulario_empleado"><Button variant="success"><Plus /> Agregar</Button></Link>
+            </Row>
+        </Container>
+    )
 }

@@ -3,7 +3,7 @@ package com.ayigroup.evaluacion.security.utility;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FakePasswordEncoderImpl implements FakePasswordEncoder{
+public class FakePasswordEncoderImpl implements FakePasswordEncoder {
 
     @Override
     public String encode(CharSequence password) {

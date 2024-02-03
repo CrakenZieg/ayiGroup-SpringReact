@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 public interface FakePasswordEncoder extends PasswordEncoder {
 
     String encode(CharSequence password);
+
     boolean matches(CharSequence rawPassword, String encodedPassword);
+
     boolean upgradeEncoding(String encodedPassword);
 
 }

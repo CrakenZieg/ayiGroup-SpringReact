@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { ApiClientesService } from '../../service/ApiClientesService';
-import { clienteWithIngresoString } from '../../service/util/ClienteFormUtils';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Container, Form, Row } from 'react-bootstrap';
 
@@ -41,7 +40,7 @@ export default function FormCliente() {
                     id: id,          
                     ...cliente
             })
-            ApiClientesService.update(clienteWithIngresoString(cliente),localStorage.getItem("token"))
+            ApiClientesService.update(cliente,localStorage.getItem("token"))
             .then(()=>{
                 navigate("/index");
             }).catch((error)=>{
@@ -49,7 +48,7 @@ export default function FormCliente() {
                 navigate("/error");
             })
         } else {            
-            ApiClientesService.create(clienteWithIngresoString(cliente),localStorage.getItem("token"))
+            ApiClientesService.create(cliente,localStorage.getItem("token"))
             .then(()=>{
                 navigate("/index");
             }).catch((error)=>{

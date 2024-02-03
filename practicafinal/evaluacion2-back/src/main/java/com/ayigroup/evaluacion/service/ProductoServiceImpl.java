@@ -45,15 +45,15 @@ public class ProductoServiceImpl implements ProductoService {
     @Transactional
     public void delete(int id) {
         Producto producto = productoRepositorio.findById(id).orElse(null);
-        if(producto != null){
+        if (producto != null) {
             productoRepositorio.delete(producto);
         }
     }
 
     @Override
-    public List<ProductoDTO> getAllDTO(){
+    public List<ProductoDTO> getAllDTO() {
         List<Producto> productos = getAll();
-        if(!productos.isEmpty()) {
+        if (!productos.isEmpty()) {
             return productos.stream().map(
                     (producto) -> {
                         return new ProductoDTO(
@@ -74,22 +74,22 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public ProductoDTO getOneDTO(int id) {
         Producto producto = getOne(id);
-        if(producto!=null){
+        if (producto != null) {
             return new ProductoDTO(
-                producto.getId(),
-                producto.getEan(),
-                producto.getNombre(),
-                producto.getDescripcion(),
-                producto.getTipo(),
-                producto.getMarca(),
-                producto.getPrecio(),
-                producto.getStock()
+                    producto.getId(),
+                    producto.getEan(),
+                    producto.getNombre(),
+                    producto.getDescripcion(),
+                    producto.getTipo(),
+                    producto.getMarca(),
+                    producto.getPrecio(),
+                    producto.getStock()
             );
         }
         return null;
     }
 
-    private Producto dtoToProducto(ProductoDTO dto){
+    private Producto dtoToProducto(ProductoDTO dto) {
         return Producto.builder()
                 .id(dto.id())
                 .ean(dto.ean())
@@ -102,7 +102,7 @@ public class ProductoServiceImpl implements ProductoService {
                 .build();
     }
 
-    private Producto createDtoToProducto(ProductoCreateRequest dto){
+    private Producto createDtoToProducto(ProductoCreateRequest dto) {
         return Producto.builder()
                 .ean(dto.ean())
                 .nombre(dto.nombre())

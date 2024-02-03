@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class EmpleadoServiceImpl implements EmpleadoService{
+public class EmpleadoServiceImpl implements EmpleadoService {
 
     @Autowired
     private EmpleadoRepository empleadoRepository;
@@ -45,15 +45,15 @@ public class EmpleadoServiceImpl implements EmpleadoService{
     @Transactional
     public void delete(int id) {
         Empleado empleado = empleadoRepository.findById(id).orElse(null);
-        if(empleado != null){
+        if (empleado != null) {
             empleadoRepository.delete(empleado);
         }
     }
 
     @Override
-    public List<EmpleadoDTO> getAllDTO(){
+    public List<EmpleadoDTO> getAllDTO() {
         List<Empleado> empleados = getAll();
-        if(!empleados.isEmpty()) {
+        if (!empleados.isEmpty()) {
             return empleados.stream().map(
                     (empleado) -> {
                         return new EmpleadoDTO(
@@ -72,7 +72,7 @@ public class EmpleadoServiceImpl implements EmpleadoService{
     @Override
     public EmpleadoDTO getOneDTO(int id) {
         Empleado empleado = getOne(id);
-        if(empleado!=null){
+        if (empleado != null) {
             return new EmpleadoDTO(
                     empleado.getId(),
                     empleado.getNombre(),
@@ -84,7 +84,7 @@ public class EmpleadoServiceImpl implements EmpleadoService{
         return null;
     }
 
-    private Empleado dtoToEmpleado(EmpleadoDTO dto){
+    private Empleado dtoToEmpleado(EmpleadoDTO dto) {
         return Empleado.builder()
                 .id(dto.id())
                 .nombre(dto.nombre())
@@ -95,7 +95,7 @@ public class EmpleadoServiceImpl implements EmpleadoService{
                 .build();
     }
 
-    private Empleado createDtoToEmpleado(EmpleadoCreateRequest dto){
+    private Empleado createDtoToEmpleado(EmpleadoCreateRequest dto) {
         return Empleado.builder()
                 .nombre(dto.nombre())
                 .apellido(dto.apellido())

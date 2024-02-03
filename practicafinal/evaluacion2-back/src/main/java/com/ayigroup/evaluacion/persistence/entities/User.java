@@ -12,7 +12,7 @@ import java.util.Collection;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name="usuarios")
+@Table(name = "usuarios")
 public class User implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 1l;

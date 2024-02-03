@@ -1,10 +1,7 @@
 package com.ayigroup.evaluacion.error.controller;
 
 import com.ayigroup.evaluacion.error.dto.ExceptionDTO;
-import io.jsonwebtoken.MalformedJwtException;
-import jakarta.servlet.ServletException;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

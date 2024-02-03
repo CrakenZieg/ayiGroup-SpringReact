@@ -7,4 +7,5 @@ public record ClienteDTO(
         String ingreso,
         String domicilio,
         String telefono
-) {}
+) {
+}

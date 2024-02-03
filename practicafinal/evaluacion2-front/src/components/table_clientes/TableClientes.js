@@ -79,7 +79,7 @@ export default function TableClientes({titulo}) {
                 </Row>
             }
             <Row className="mb-3">
-                <Link to="/formulario_producto"><Button variant="success"><Plus/> Agregar producto</Button></Link>
+                <Link to="/formulario_cliente"><Button variant="success"><Plus/> Agregar cliente</Button></Link>
             </Row>
         </>
   )

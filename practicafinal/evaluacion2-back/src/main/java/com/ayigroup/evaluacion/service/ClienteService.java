@@ -11,11 +11,17 @@ import java.util.List;
 public interface ClienteService {
 
     List<Cliente> getAll();
+
     Cliente getOne(int id);
+
     void create(ClienteCreateRequest dto);
+
     void update(ClienteDTO dto);
+
     void delete(int id);
+
     List<ClienteDTO> getAllDTO();
+
     ClienteDTO getOneDTO(int id);
 
 }

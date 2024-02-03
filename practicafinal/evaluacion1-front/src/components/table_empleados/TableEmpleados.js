@@ -7,7 +7,7 @@ import { Button } from 'react-bootstrap';
 import { PencilSquare, Trash } from 'react-bootstrap-icons';
 
 
-export default function TableEmpleados({titulo}) {
+export default function TableEmpleados({ titulo }) {
 
     const [data, setData] = useState([]);
 
@@ -24,9 +24,9 @@ export default function TableEmpleados({titulo}) {
     }, [])
 
     function eliminar(id) {
-        ApiService.delete(id,localStorage.getItem("token"))
+        ApiService.delete(id, localStorage.getItem("token"))
             .then(() => {
-                setData(data.filter((empleado)=>{return empleado.id!==id;}))
+                setData(data.filter((empleado) => { return empleado.id !== id; }))
             }).catch((error) => {
                 console.log("Error: " + error);
                 navigate("/error");

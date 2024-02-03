@@ -17,30 +17,30 @@ public class ProductoController {
     private ProductoService productoService;
 
     @GetMapping("")
-    public ResponseEntity<List<ProductoDTO>> all(){
+    public ResponseEntity<List<ProductoDTO>> all() {
         List<ProductoDTO> empleados = productoService.getAllDTO();
         return ResponseEntity.ok(empleados);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductoDTO> one(@PathVariable int id){
+    public ResponseEntity<ProductoDTO> one(@PathVariable int id) {
         return ResponseEntity.ok(productoService.getOneDTO(id));
     }
 
     @PostMapping("")
-    public ResponseEntity<List<ProductoDTO>> post(@RequestBody ProductoCreateRequest producto){
+    public ResponseEntity<List<ProductoDTO>> post(@RequestBody ProductoCreateRequest producto) {
         productoService.create(producto);
         return all();
     }
 
     @PutMapping("")
-    public ResponseEntity<List<ProductoDTO>> update(@RequestBody ProductoDTO producto){
+    public ResponseEntity<List<ProductoDTO>> update(@RequestBody ProductoDTO producto) {
         productoService.update(producto);
         return all();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<List<ProductoDTO>> delete(@PathVariable int id){
+    public ResponseEntity<List<ProductoDTO>> delete(@PathVariable int id) {
         productoService.delete(id);
         return all();
     }

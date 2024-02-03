@@ -17,30 +17,30 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @GetMapping("")
-    public ResponseEntity<List<ClienteDTO>> all(){
+    public ResponseEntity<List<ClienteDTO>> all() {
         List<ClienteDTO> clientes = clienteService.getAllDTO();
         return ResponseEntity.ok(clientes);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClienteDTO> one(@PathVariable int id){
+    public ResponseEntity<ClienteDTO> one(@PathVariable int id) {
         return ResponseEntity.ok(clienteService.getOneDTO(id));
     }
 
     @PostMapping("")
-    public ResponseEntity<List<ClienteDTO>> post(@RequestBody ClienteCreateRequest cliente){
+    public ResponseEntity<List<ClienteDTO>> post(@RequestBody ClienteCreateRequest cliente) {
         clienteService.create(cliente);
         return all();
     }
 
     @PutMapping("")
-    public ResponseEntity<List<ClienteDTO>> update(@RequestBody ClienteDTO cliente){
+    public ResponseEntity<List<ClienteDTO>> update(@RequestBody ClienteDTO cliente) {
         clienteService.update(cliente);
         return all();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<List<ClienteDTO>> delete(@PathVariable int id){
+    public ResponseEntity<List<ClienteDTO>> delete(@PathVariable int id) {
         clienteService.delete(id);
         return all();
     }

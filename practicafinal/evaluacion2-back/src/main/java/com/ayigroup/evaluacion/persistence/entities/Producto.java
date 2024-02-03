@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.EAN;
 
 import java.io.Serializable;
 
@@ -15,7 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="productos")
+@Table(name = "productos")
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1l;
@@ -45,8 +44,8 @@ public class Producto implements Serializable {
 
     @PrePersist
     @PreUpdate
-    private void normalizeBranch(){
-        this.precio = (Math.floor(this.precio*100))/100;
+    private void normalizeBranch() {
+        this.precio = (Math.floor(this.precio * 100)) / 100;
     }
 
 }

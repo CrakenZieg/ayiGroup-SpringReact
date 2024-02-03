@@ -11,11 +11,17 @@ import java.util.List;
 public interface ProductoService {
 
     List<Producto> getAll();
+
     Producto getOne(int id);
+
     void create(ProductoCreateRequest dto);
+
     void update(ProductoDTO dto);
+
     void delete(int id);
+
     List<ProductoDTO> getAllDTO();
+
     ProductoDTO getOneDTO(int id);
 
 }

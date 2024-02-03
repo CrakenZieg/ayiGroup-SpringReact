@@ -8,20 +8,20 @@ import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 
 export default function Router() {
-  return (
-    <>
-        <BrowserRouter>
-            <Header/>
-            <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="/index" element={<Main />} />
-                <Route path="/formulario_empleado/:id" element={<FormEmpleado />} />
-                <Route path="/formulario_empleado" element={<FormEmpleado />} />
-                <Route path="/error" element={<Error />} />
-                <Route path="*" element={<Error />} />
-            </Routes>
-            <Footer/>
-        </BrowserRouter>
-    </>
-  )
+    return (
+        <>
+            <BrowserRouter>
+                <Header />
+                <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/index" element={<Main />} />
+                    <Route path="/formulario_empleado/:id" element={<FormEmpleado />} />
+                    <Route path="/formulario_empleado" element={<FormEmpleado />} />
+                    <Route path="/error" element={<Error />} />
+                    <Route path="*" element={<Error />} />
+                </Routes>
+                <Footer />
+            </BrowserRouter>
+        </>
+    )
 }

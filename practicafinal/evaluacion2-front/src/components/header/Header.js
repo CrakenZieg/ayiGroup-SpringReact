@@ -46,8 +46,8 @@ export default function Header() {
                     <Nav.Link as={NavLink} to="/formulario_producto" className={({isActive})=>isActive ? "":"text-white"}>
                         Formulario de productos
                     </Nav.Link>
-                    <Nav.Link as={NavLink} onClick={e=>logout(e)} className={"text-danger"}>
-                        Logout <BoxArrowRight/>
+                    <Nav.Link as={NavLink} onClick={e=>logout(e)} className={"text-danger"} id='user'>
+                        {user} <BoxArrowRight/>
                     </Nav.Link>
                 </Nav>
                 }                

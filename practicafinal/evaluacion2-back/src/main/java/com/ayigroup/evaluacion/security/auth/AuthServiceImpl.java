@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthServiceImpl implements AuthService{
+public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -25,7 +25,7 @@ public class AuthServiceImpl implements AuthService{
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.username(), request.password()));
         String token = null;
-        if(request.username()!=null){
+        if (request.username() != null) {
             UserDetails user = userDetailsService.loadUserByUsername(request.username());
             token = jwtService.getToken(user);
         }
