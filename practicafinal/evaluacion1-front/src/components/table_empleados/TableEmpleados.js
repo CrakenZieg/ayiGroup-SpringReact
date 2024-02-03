@@ -10,24 +10,23 @@ import { PencilSquare, Trash } from 'react-bootstrap-icons';
 export default function TableEmpleados({titulo}) {
 
     const [data, setData] = useState([]);
-    
+
     let navigate = useNavigate();
 
     useEffect(() => {
         ApiService.all(localStorage.getItem("token"))
             .then((response) => {
-                console.log(response.data);
                 setData(response.data);
             }).catch((error) => {
                 console.log("Error: " + error);
                 navigate('/error');
             })
-    }, [])
+    }, [data])
 
     function eliminar(id) {
         ApiService.delete(id,localStorage.getItem("token"))
             .then(() => {
-                navigate("/");
+                setData(data.filter((empleado)=>{return empleado.id!==id;}))
             }).catch((error) => {
                 console.log("Error: " + error);
                 navigate("/error");
@@ -58,7 +57,7 @@ export default function TableEmpleados({titulo}) {
             </Row>
             {data.length !== 0 ?
                 <Row>
-                    <Table striped bordered hover>
+                    <Table striped bordered hover id="empleado">
                         <thead>
                             <tr>
                                 <th>Legajo</th>
@@ -66,7 +65,6 @@ export default function TableEmpleados({titulo}) {
                                 <th>Cargo</th>
                                 <th>Sucursal</th>
                                 <th>Antigüedad</th>
-                                <th>Acciones</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>

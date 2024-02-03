@@ -5,7 +5,15 @@ import { Button, Container, Form, Row } from 'react-bootstrap';
 
 export default function FormEmpleado() {
 
-    const [empleado, setEmpleado] = useState({});
+    const empleadoInit = {
+        nombre: "",
+        apellido:"",
+        cargo:"",
+        sucursal:"",
+        antiguedad:0
+    };
+
+    const [empleado, setEmpleado] = useState(empleadoInit);
 
     const navigate = useNavigate()
 
@@ -20,26 +28,11 @@ export default function FormEmpleado() {
                 console.log("Error: "+error);
                 navigate("/index");
             })
-        } else {
-            setEmpleado({
-                nombre: "",
-                apellido:"",
-                cargo:"",
-                sucursal:"",
-                antiguedad:0
-            })
-        }        
+        }     
     },[])
 
     function submit(e){
-        e.preventDefault(); 
-        setEmpleado({        
-            nombre: e.target.nombre.value,
-            apellido: e.target.apellido.value,
-            cargo: e.target.cargo.value,
-            sucursal: e.target.sucursal.value,
-            antiguedad: e.target.antiguedad.value                
-        })       
+        e.preventDefault();              
         if(id != null){
             setEmpleado({      
                     id: id,          
@@ -63,6 +56,14 @@ export default function FormEmpleado() {
         }
     }
 
+    function formChange(e){
+        const {name,value} = e.target;
+        setEmpleado({
+            ...empleado,
+            [name]: value
+        });
+    }
+
   return (
     <Container>
         <Row>
@@ -76,23 +77,23 @@ export default function FormEmpleado() {
             }
             <Form.Group className="mb-3" controlId="nombre">
                 <Form.Label>Nombre</Form.Label>
-                <Form.Control type="text" value={empleado.nombre} name="nombre" placeholder="Carlos" />
+                <Form.Control type="text" value={empleado.nombre} name="nombre" placeholder="Carlos" onChange={(e)=>formChange(e)}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="apellido">
-                <Form.Label>Example textarea</Form.Label>
-                <Form.Control type="text" value={empleado.apellido} name="apellido" placeholder="Perez"/>
+                <Form.Label>Apellido</Form.Label>
+                <Form.Control type="text" value={empleado.apellido} name="apellido" placeholder="Perez" onChange={(e)=>formChange(e)}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="cargo">
-                <Form.Label>Nombre</Form.Label>
-                <Form.Control type="text" value={empleado.cargo} name="cargo" placeholder="Carlos" />
+                <Form.Label>Cargo</Form.Label>
+                <Form.Control type="text" value={empleado.cargo} name="cargo" placeholder="Ej: Vendedor" onChange={(e)=>formChange(e)}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="sucursal">
-                <Form.Label>Example textarea</Form.Label>
-                <Form.Control type="text" value={empleado.sucursal} name="sucursal" placeholder="Perez"/>
+                <Form.Label>Sucursal</Form.Label>
+                <Form.Control type="text" value={empleado.sucursal} name="sucursal" placeholder="Ej: AVELLANEDA" onChange={(e)=>formChange(e)}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="antiguedad">
-                <Form.Label>Legajo</Form.Label>
-                <Form.Control type="number" value={empleado.antiguedad} name="antiguedad" min={0}/>
+                <Form.Label>Antigüedad</Form.Label>
+                <Form.Control type="number" value={empleado.antiguedad} name="antiguedad" min={0} onChange={(e)=>formChange(e)}/>
             </Form.Group>
             <Button variant="success" type="submit">
                 Enviar

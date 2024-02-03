@@ -40,7 +40,7 @@ public class Empleado implements Serializable {
 
     @PrePersist
     private void normalizeBranch(){
-        this.sucursal = this.sucursal.toUpperCase();
+        this.sucursal = this.sucursal.replace(" ","").toUpperCase();
     }
 
 
