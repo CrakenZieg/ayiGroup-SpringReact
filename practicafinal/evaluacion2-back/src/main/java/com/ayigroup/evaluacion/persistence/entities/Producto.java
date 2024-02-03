@@ -1,13 +1,12 @@
 package com.ayigroup.evaluacion.persistence.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.EAN;
 
 import java.io.Serializable;
 
@@ -26,7 +25,8 @@ public class Producto implements Serializable {
     @Column(name = "id_producto")
     private int id;
     @NotBlank(message = "El código ean no puede estar vacío")
-    @Column(name = "codigo_ean")
+    @Column(name = "codigo_ean", unique = true)
+    @EAN
     private String ean;
     @NotBlank(message = "El nombre no puede estar vacío")
     @Column(name = "nombre_producto")
@@ -38,10 +38,10 @@ public class Producto implements Serializable {
     private String tipo;
     @NotBlank(message = "La marca no puede estar vacío")
     private String marca;
-    @Min(value = 0, message = "El precio no puede ser menor o igual a cero")
+    @Positive(message = "El precio no puede ser menor o igual a cero")
     @Max(value = 1000, message = "El precio no puede ser mayor o igual a 1000")
     private double precio;
-    @Min(value = 0, message = "El stock no puede ser menor a cero")
+    @PositiveOrZero(message = "El stock no puede ser menor a cero")
     private int stock;
 
     @PrePersist

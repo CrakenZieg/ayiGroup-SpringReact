@@ -1,27 +1,35 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { NavLink, redirect } from 'react-router-dom';
+import Image from 'react-bootstrap/Image';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { BoxArrowRight } from 'react-bootstrap-icons';
 
 export default function Header() {
 
     const { user, logoutUser } = useAuth();
 
-    function logout(e){
+    let navigate = useNavigate();
+
+    function logout(e) {
         e.preventDefault();
         logoutUser();
-        redirect("/");
+        navigate("/");
     }
 
   return (
     <>
-        <Navbar bg="dark" data-bs-theme="dark">
+        <Navbar bg="dark" data-bs-theme="dark" className='position-sticky'>
             <Container>
+                <Row className="d-flex w-100 justify-content-between">
+                <Navbar.Brand className='w-25'>
+                    <Image src="/AYI_LogoProp.png" alt="Logo" width={100} />
+                </Navbar.Brand>
                 {
                 user!=="" &&                
-                <Nav className="me-auto" >
+                <Nav className="w-auto d-flex align-items-end">
                     <Nav.Link as={NavLink} to="/index" className={({isActive})=>isActive ? "":"text-white"}>
                         Inicio
                     </Nav.Link>
@@ -42,7 +50,7 @@ export default function Header() {
                     </Nav.Link>
                 </Nav>
                 }                
-                <hr/>
+                </Row>
             </Container>
         </Navbar>
     </>

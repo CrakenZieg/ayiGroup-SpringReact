@@ -1,10 +1,20 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState("");
-  
+
+    const [user, setUser] = useState("");
+
+    useEffect(() => {
+        if (user === "") {
+            let userData = localStorage.getItem('user');
+            if (userData) {
+                setUser(userData);
+            }
+        }
+    })
+
     const loginUser = (user, token) => {
         localStorage.setItem("token", token);
         localStorage.setItem("user", user);
@@ -17,13 +27,13 @@ export const AuthProvider = ({ children }) => {
         setUser("");
     };
 
-  return (
-    <AuthContext.Provider value={{ user, loginUser, logoutUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
+    return (
+        <AuthContext.Provider value={{ user, loginUser, logoutUser }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
 export const useAuth = () => {
-  return useContext(AuthContext);
+    return useContext(AuthContext);
 };

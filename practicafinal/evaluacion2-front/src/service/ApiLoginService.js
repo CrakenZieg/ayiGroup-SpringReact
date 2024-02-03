@@ -1,7 +1,7 @@
 import { axios } from 'axios';
 import { URLS } from '../constants/Constants';
 
-export const ApiService = {
+export const ApiLoginService = {
 
     login : (credentials) => {
         return axios.post(

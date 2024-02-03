@@ -21,7 +21,7 @@ export default function TableEmpleados({titulo}) {
                 console.log("Error: " + error);
                 navigate('/error');
             })
-    }, [data])
+    }, [])
 
     function eliminar(id) {
         ApiService.delete(id,localStorage.getItem("token"))
@@ -57,7 +57,7 @@ export default function TableEmpleados({titulo}) {
             </Row>
             {data.length !== 0 ?
                 <Row>
-                    <Table striped bordered hover id="empleado">
+                    <Table striped bordered hover id="empleados">
                         <thead>
                             <tr>
                                 <th>Legajo</th>

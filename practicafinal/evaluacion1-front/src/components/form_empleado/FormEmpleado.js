@@ -13,7 +13,7 @@ export default function FormEmpleado() {
         antiguedad:0
     };
 
-    const [empleado, setEmpleado] = useState(empleadoInit);
+    const [empleado, setEmpleado] = useState({});
 
     const navigate = useNavigate()
 
@@ -28,6 +28,8 @@ export default function FormEmpleado() {
                 console.log("Error: "+error);
                 navigate("/index");
             })
+        } else {
+            setEmpleado(empleadoInit);
         }     
     },[])
 
@@ -65,10 +67,10 @@ export default function FormEmpleado() {
     }
 
   return (
-    <Container>
+    <Container className="mt-3">
         <Row>
             {id?<h2>Modificar empleado</h2>:<h2>Agregar empleado</h2>}
-            <Form onSubmit={e => { submit(e) }}>
+            <Form onSubmit={e => { submit(e) }} className="mt-3">
             {id &&  
                 <Form.Group className="mb-3" controlId="id">
                     <Form.Label>Legajo</Form.Label>
@@ -77,23 +79,23 @@ export default function FormEmpleado() {
             }
             <Form.Group className="mb-3" controlId="nombre">
                 <Form.Label>Nombre</Form.Label>
-                <Form.Control type="text" value={empleado.nombre} name="nombre" placeholder="Carlos" onChange={(e)=>formChange(e)}/>
+                <Form.Control type="text" value={empleado.nombre} name="nombre" placeholder="Carlos" onChange={(e)=>formChange(e)} required/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="apellido">
                 <Form.Label>Apellido</Form.Label>
-                <Form.Control type="text" value={empleado.apellido} name="apellido" placeholder="Perez" onChange={(e)=>formChange(e)}/>
+                <Form.Control type="text" value={empleado.apellido} name="apellido" placeholder="Perez" onChange={(e)=>formChange(e)} required/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="cargo">
                 <Form.Label>Cargo</Form.Label>
-                <Form.Control type="text" value={empleado.cargo} name="cargo" placeholder="Ej: Vendedor" onChange={(e)=>formChange(e)}/>
+                <Form.Control type="text" value={empleado.cargo} name="cargo" placeholder="Ej: Vendedor" onChange={(e)=>formChange(e)} required/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="sucursal">
                 <Form.Label>Sucursal</Form.Label>
-                <Form.Control type="text" value={empleado.sucursal} name="sucursal" placeholder="Ej: AVELLANEDA" onChange={(e)=>formChange(e)}/>
+                <Form.Control type="text" value={empleado.sucursal} name="sucursal" placeholder="Ej: AVELLANEDA" onChange={(e)=>formChange(e)} required/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="antiguedad">
                 <Form.Label>Antigüedad</Form.Label>
-                <Form.Control type="number" value={empleado.antiguedad} name="antiguedad" min={0} onChange={(e)=>formChange(e)}/>
+                <Form.Control type="number" value={empleado.antiguedad} name="antiguedad" min={0} onChange={(e)=>formChange(e)} required/>
             </Form.Group>
             <Button variant="success" type="submit">
                 Enviar
