@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { ApiProductosService } from '../../service/ApiProductosService';
-import { productoWithEanArray, eanLastNumber, productoWithEanString } from '../../service/util/ProductosFormUtils'
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Container, Form, Row, Col } from 'react-bootstrap';
+import { Button, Container, Form, Row } from 'react-bootstrap';
 
 export default function FormProducto() {
 
     const productoInit = {
-        ean: [],
+        ean: "",
         nombre:"",
         descripcion:"",
         tipo:"",
@@ -17,7 +16,6 @@ export default function FormProducto() {
     };
 
     const [producto, setProducto] = useState({});
-    const [ean, setEan] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0]);
 
     const navigate = useNavigate()
 
@@ -27,11 +25,7 @@ export default function FormProducto() {
         if(id != null){
             ApiProductosService.one(id,localStorage.getItem("token"))
             .then((response)=>{
-                setProducto(productoWithEanArray(response.data));
-                response.data.ean.split("").forEach((element,index) => {
-                    if(index<=13){
-                    ean[index] = Number.parseInt(element);
-                }});               
+                setProducto(response.data);                               
             }).catch((error)=>{
                 console.log("Error: "+error);
                 navigate("/index");
@@ -48,7 +42,7 @@ export default function FormProducto() {
                     id: id,          
                     ...producto
             })
-            ApiProductosService.update(productoWithEanString(producto),localStorage.getItem("token"))
+            ApiProductosService.update(producto,localStorage.getItem("token"))
             .then(()=>{
                 navigate("/index");
             }).catch((error)=>{
@@ -56,7 +50,7 @@ export default function FormProducto() {
                 navigate("/error");
             })
         } else {            
-            ApiProductosService.create(productoWithEanString(producto),localStorage.getItem("token"))
+            ApiProductosService.create(producto,localStorage.getItem("token"))
             .then(()=>{
                 navigate("/index");
             }).catch((error)=>{
@@ -74,17 +68,6 @@ export default function FormProducto() {
         });
     }
 
-    function formEanChange(e,index){
-        let mod = ean.slice();
-        mod.splice(index,1,Number.parseInt(e.target.value))
-        mod.splice(mod.length-1,1,eanLastNumber(mod))
-        setEan(mod)        
-        setProducto({
-            ...producto,
-            ean: mod
-        });
-    }
-
   return (
     <Container className="mt-3">
         <Row>
@@ -97,49 +80,9 @@ export default function FormProducto() {
                 </Form.Group>
             }
             <Form.Group className="mb-3" controlId="ean">
-                <Form.Label>Ean-13</Form.Label>
-                <Row className='d-flex flex-row'>
-                    <Col>
-                        <Form.Control type="number" value={ean[0]} name="ean[0]" min={0} max={9} onChange={(e)=>formEanChange(e,0)} required/>
-                    </Col>
-                    <Col>
-                        <Form.Control type="number" value={ean[1]} name="ean[1]" min={0} max={9} onChange={(e)=>formEanChange(e,1)} required/>
-                    </Col>
-                    <Col>
-                        <Form.Control type="number" value={ean[2]} name="ean[2]" min={0} max={9} onChange={(e)=>formEanChange(e,2)} required/>
-                    </Col>
-                    <Col>
-                        <Form.Control type="number" value={ean[3]} name="ean[3]" min={0} max={9} onChange={(e)=>formEanChange(e,3)} required/>
-                    </Col>
-                    <Col>
-                        <Form.Control type="number" value={ean[4]} name="ean[4]" min={0} max={9} onChange={(e)=>formEanChange(e,4)} required/>
-                    </Col>
-                    <Col>
-                        <Form.Control type="number" value={ean[5]} name="ean[5]" min={0} max={9} onChange={(e)=>formEanChange(e,5)} required/>
-                    </Col>
-                    <Col>
-                        <Form.Control type="number" value={ean[6]} name="ean[6]" min={0} max={9} onChange={(e)=>formEanChange(e,6)} required/>
-                    </Col>
-                    <Col>
-                        <Form.Control type="number" value={ean[7]} name="ean[7]" min={0} max={9} onChange={(e)=>formEanChange(e,7)} required/>
-                    </Col>
-                    <Col>
-                        <Form.Control type="number" value={ean[8]} name="ean[8]" min={0} max={9} onChange={(e)=>formEanChange(e,8)} required/>
-                    </Col>
-                    <Col>
-                        <Form.Control type="number" value={ean[9]} name="ean[9]" min={0} max={9} onChange={(e)=>formEanChange(e,9)} required/>
-                    </Col>
-                    <Col>
-                        <Form.Control type="number" value={ean[10]} name="ean[10]" min={0} max={9} onChange={(e)=>formEanChange(e,10)} required/>
-                    </Col>
-                    <Col>
-                        <Form.Control type="number" value={ean[11]} name="ean[11]" min={0} max={9} onChange={(e)=>formEanChange(e,11)} required/>
-                    </Col>
-                    <Col>
-                        <Form.Control type="number" value={ean[12]} name="ean[12]" disabled/>
-                    </Col>
-                </Row>
-        </Form.Group>
+                <Form.Label>Código EAN</Form.Label>
+                <Form.Control type="text" value={producto.ean} name="ean" onChange={(e)=>formChange(e)} maxLength={25} required/>
+            </Form.Group>
             <Form.Group className="mb-3" controlId="nombre">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control type="text" value={producto.nombre} name="nombre" onChange={(e)=>formChange(e)} maxLength={25} required/>
