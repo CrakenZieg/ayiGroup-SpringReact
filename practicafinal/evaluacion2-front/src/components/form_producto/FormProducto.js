@@ -28,7 +28,10 @@ export default function FormProducto() {
             ApiProductosService.one(id,localStorage.getItem("token"))
             .then((response)=>{
                 setProducto(productoWithEanArray(response.data));
-                setEan(response.data.ean.split("").map((e)=>{return Number.parseInt(e)}))
+                response.data.ean.split("").forEach((element,index) => {
+                    if(index<=13){
+                    ean[index] = Number.parseInt(element);
+                }});               
             }).catch((error)=>{
                 console.log("Error: "+error);
                 navigate("/index");
@@ -72,15 +75,13 @@ export default function FormProducto() {
     }
 
     function formEanChange(e,index){
-        console.log(ean);
         let mod = ean.slice();
         mod.splice(index,1,Number.parseInt(e.target.value))
         mod.splice(mod.length-1,1,eanLastNumber(mod))
-        console.log(mod)
         setEan(mod)        
         setProducto({
             ...producto,
-            ean: ean
+            ean: mod
         });
     }
 

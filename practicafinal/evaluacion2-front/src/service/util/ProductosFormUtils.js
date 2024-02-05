@@ -12,9 +12,7 @@ export function eanLastNumber(array){
 }
 
 export function productoWithEanArray(producto){
-    
-    console.log(producto)
-    let prodWithArray = {
+    const prodWithArray = {
         ean: [],
         nombre:"",
         descripcion:"",
@@ -33,12 +31,10 @@ export function productoWithEanArray(producto){
     prodWithArray.marca = producto.marca;
     prodWithArray.precio = producto.precio;
     prodWithArray.stock = producto.stock;
-    console.log(prodWithArray)
     return prodWithArray;
 }
 
 export function productoWithEanString(producto){
-    console.log(producto)
     const prodWithString = {}
     if(producto.id!==""){
         prodWithString.id = producto.id
